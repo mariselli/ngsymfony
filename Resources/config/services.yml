@@ -1,0 +1,4 @@
+services:
+    ng_symfony.extractor:
+        class: Mariselli\NgSymfonyBundle\Extractor\StateRoutesExtractor
+        arguments: ["@service_container"]
