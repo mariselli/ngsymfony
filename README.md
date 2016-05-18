@@ -64,7 +64,7 @@ ng_symfony:
 
 Sometime happen that we want to separate state base on path.
 In this case is possible to declare `sections` property.
-NOTE: the root property `module_name, module_name, file_path, urls` will be ignored even if are mandatory.
+NOTE: the root properties `module_name, module_name, file_path, urls` will be ignored even if are mandatory.
 ```
 ng_symfony:
     module_name: "ngSymfony.states"
@@ -75,3 +75,42 @@ ng_symfony:
         - { module_name: "ngSymfony.frontStates", constant_name: "$ngStatesFrontend", file_path: "/Resources/ui-states-frontend.js", urls: ["/app"] }
         - { module_name: "ngSymfony.backendStates", constant_name: "$ngStatesBackend", file_path: "/Resources/ui-states-backend.js", urls: ["/admin", "/staff"] }
 ```
+
+
+## Usage
+
+We have a page with this div:
+```
+<div id="content-pane" ui-view></div>
+```
+
+Creating a state that simply represent a page:
+```php
+use Mariselli\NgSymfonyBundle\Annotation\UiRouterState;
+// [...]
+
+class DefaultController extends Controller
+{
+    // [...]
+    
+    /**
+     * @Route("/start", name="start", options={"expose"=true})
+     * @UiRouterState(view="start")
+     */
+    public function startAction()
+    {
+        return $this->render('default/start.html.twig');
+    }
+    
+    // [...]
+}
+```
+
+In this way we have create a state named `start`, with a link like that
+```
+<a ui-sref="start">Go to start page</a>
+```
+is possible to show inside `div#content-pane` the output of action startAction.
+  
+  
+* Documentation in progress *
