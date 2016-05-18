@@ -21,11 +21,4 @@
     }
   },
   "target-dir" : "Mariselli/NgSymfony",
-  "repositories" : [{
-  }],
-  "extra" : {
-    "branch-alias" : {
-      "dev-master": "2.0-dev"
-    }
-  }
 }
