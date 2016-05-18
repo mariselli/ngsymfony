@@ -13,7 +13,7 @@
     "MIT"
   ],
   "require" : {
-    "friendsofsymfony/jsrouting-bundle": "master"
+    "friendsofsymfony/jsrouting-bundle": "^1.6"
   },
   "autoload" : {
     "psr-0" : {
