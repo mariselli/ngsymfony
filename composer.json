@@ -12,6 +12,9 @@
   "license" : [
     "MIT"
   ],
+  "require" : {
+    "friendsofsymfony/jsrouting-bundle": "^1.6"
+  },
   "autoload" : {
     "psr-0" : {
       "Mariselli\\NgSymfony" : ""
