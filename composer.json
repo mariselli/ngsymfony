@@ -16,8 +16,8 @@
     "friendsofsymfony/jsrouting-bundle": "^1.6"
   },
   "autoload" : {
-    "psr-0" : {
-      "Mariselli\\NgSymfony" : ""
+    "psr-4" : {
+      "Mariselli\\NgSymfony\\" : ""
     }
   },
   "target-dir" : "Mariselli/NgSymfony"
