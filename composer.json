@@ -1,0 +1,31 @@
+{
+  "name" : "mariselli/ngsymfony",
+  "description" : "A pretty nice way to expose Angular UI Router states based on your Symfony2 routing system.",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Mattia Mariselli",
+    "email" : "mattia.mariselli@gmail.com"
+  }],
+  "keywords" : [
+    "js routing", "routing", "javascript", "angular", "angular-ui-router"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+    "friendsofsymfony/jsrouting-bundle": "master"
+  },
+  "autoload" : {
+    "psr-0" : {
+      "Mariselli\\NgSymfony" : ""
+    }
+  },
+  "target-dir" : "Mariselli/NgSymfony",
+  "repositories" : [{
+  }],
+  "extra" : {
+    "branch-alias" : {
+      "dev-master": "2.0-dev"
+    }
+  }
+}
