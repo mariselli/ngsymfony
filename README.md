@@ -17,8 +17,8 @@ composer require mariselli/ngsymfony
 Then, enable the bundle by adding it to the list of registered bundles
 in the `app/AppKernel.php` file of your project:
 
-```
-    <?php
+```php
+ <?php
     // app/AppKernel.php
 
     // ...
@@ -46,7 +46,7 @@ The next step is to configure the bundle to work with the specific needs of your
 Add the following configuration to your config.yml file.
 
 This is the basic configuration:
-```
+```yml
 ng_symfony:
     module_name: "ngSymfony.states"
     constant_name: "$ngStates"
@@ -54,7 +54,7 @@ ng_symfony:
 ```
 
 It's also possible to filter what kind of url have to be scanned:
-```
+```yml
 ng_symfony:
     module_name: "ngSymfony.states"
     constant_name: "$ngStates"
@@ -65,7 +65,7 @@ ng_symfony:
 Sometime happen that we want to separate state base on path.
 In this case is possible to declare `sections` property.
 NOTE: the root properties `module_name, module_name, file_path, urls` will be ignored even if are mandatory.
-```
+```yml
 ng_symfony:
     module_name: "ngSymfony.states"
     module_name: "$ngStates"
@@ -80,7 +80,7 @@ ng_symfony:
 ## How to define state with Annotations
 
 We have a page with this div:
-```
+```html
 <div id="content-pane" ui-view></div>
 ```
 
@@ -107,7 +107,7 @@ class DefaultController extends Controller
 ```
 
 In this way we have create a state named `start`, with a link like that
-```
+```html
 <a ui-sref="start">Go to start page</a>
 ```
 is possible to show inside `div#content-pane` the output of action startAction.
