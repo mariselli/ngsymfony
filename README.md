@@ -77,7 +77,7 @@ ng_symfony:
 ```
 
 
-## Usage
+## How to define state with Annotations
 
 We have a page with this div:
 ```
@@ -112,5 +112,35 @@ In this way we have create a state named `start`, with a link like that
 ```
 is possible to show inside `div#content-pane` the output of action startAction.
   
-  
-** Documentation in progress **
+
+## How to generate state configuration
+
+This plugin generate a js file with an array of objects that contains the states configurations
+By a function called `$stateConfigurator` is possible to use this array for setup all the states.
+
+The state is not automatically update but we have to run a console command:
+```
+$ php bin/console mariselli:ng-symfony:states
+```
+In this way the file defined in configuration will be updated with the new states generate from the new Annotations.
+
+This operation could be done automatically with Gulp or Grunt.
+
+## Setup angular UI router
+
+Here we are suppose that all dependencies are already available
+```js
+angular.module('demoApp', ['ngSymfony.states', 'ui.router'])
+        .config(['$stateProvider', '$urlRouterProvider', '$ngStates', '$httpProvider', function ($stateProvider, $urlRouterProvider, $ngStates, $httpProvider) {
+            $urlRouterProvider.otherwise('/start');
+            
+            $stateConfigurator($stateProvider, $ngStates);
+            
+            // http settings
+            $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
+        }]);
+```
+
+The function `$stateConfigurator` is defined in `stateConfigurator.js` provided by bundle.
+The constant `$ngStates` is provided by module `ngSymfony.states` defined in the exported file.
