@@ -188,7 +188,7 @@ class DefaultController extends Controller
      */
     public function demoAction()
     {
-        return $this->render('default/demo.html.twig');
+        return JsonResponse::create(['name'=>'Bob']);
     }
     
     /**
