@@ -3,12 +3,35 @@ A pretty nice way to expose Angular UI Router states based on your Symfony2 rout
 
 ---
 
+NOTE: 
+this documentation is underconstruction, 
+the english used is quide bad and will be fixed as soon as possible. Fell free to help :D
+
+
 ## Introduction
-This bundle want to use the power of annotation for generate the state configuration fon [Angualr UI Router](https://github.com/angular-ui/ui-router).
+This bundle want to use the power of annotations for generate the state configuration fon [Angualr UI Router](https://github.com/angular-ui/ui-router).
+
+## The concept behind
+The purpose of this bundle is to connect angular states with symfony routes.
+The difference from an angular-ui state and a symfony route is that a route have an URL and name when the state has
+a name, a controller associated and a template (string or URL).
+
+__The solutions is this:__
+Every state should carry an information.
+The information is provided by a symfony action executed on server side. 
+
+So basicaly a symofny action could be connected to an angular ui state.
+The __route name__ of the action will be the __state name__, this action can specify the name of the __route__ 
+that will return the template as an html string and  specify a name of an angular controller that will handle the view.
+
+So far is clear that this route will define a state with template and controller, but the return itself of this action
+who will handle?
+This is something that have to be handle by a developer.
+In the follows partI will explain better this concepts.
 
 ## Installation
 
-Open a command console, enter your project directory and execute the
+Open your console, go in your project directory and execute the
 following command to download the latest stable version of this bundle:
 ```
 composer require mariselli/ngsymfony
@@ -84,6 +107,8 @@ We have a page with this div:
 <div id="content-pane" ui-view></div>
 ```
 
+__Note:__ Here I'm assuming that you know how it works Angular UI router
+
 Creating a state that simply represent a page:
 ```php
 use Mariselli\NgSymfonyBundle\Annotation\UiRouterState;
@@ -106,13 +131,14 @@ class DefaultController extends Controller
 }
 ```
 
+
 In this way we have create a state named `start`, with a link like that
 ```html
 <a ui-sref="start">Go to start page</a>
 ```
 is possible to show inside `div#content-pane` the output of action startAction.
   
-
+Scroll down for [annotation reference](#annotation-reference)
 ## How to generate state configuration
 
 This plugin generate a js file with an array of objects that contains the states configurations
@@ -144,3 +170,35 @@ angular.module('demoApp', ['ngSymfony.states', 'ui.router'])
 
 The function `$stateConfigurator` is defined in `stateConfigurator.js` provided by bundle.
 The constant `$ngStates` is provided by module `ngSymfony.states` defined in the exported file.
+
+
+## Annotation Reference
+
+```php
+use Mariselli\NgSymfonyBundle\Annotation\UiRouterState;
+// [...]
+
+class DefaultController extends Controller
+{
+    // [...]
+    
+    /**
+     * @Route("/demo", name="demo", options={"expose"=true})
+     * @UiRouterState(view="demo_view", controller="DemoCtrl", controllerAs="cont", parentState="home", cache="false")
+     */
+    public function demoAction()
+    {
+        return $this->render('default/demo.html.twig');
+    }
+    
+    /**
+     * @Route("/view/demo", name="demo_view", options={"expose"=true})
+     */
+    public function demoViewAction()
+    {
+        return $this->render('default/demo.html.twig');
+    }
+    
+    // [...]
+}
+```
